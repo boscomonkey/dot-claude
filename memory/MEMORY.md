@@ -1,0 +1,3 @@
+- [Use git worktrees for parallel branches](feedback_worktree_parallel.md) - Agent with isolation:"worktree" instead of sequential checkout
+- [Worktree folder naming](feedback_worktree_naming.md) - Sibling folders named {service}-{ticket}, e.g. my-service-PROJ-1234
+- [Use git -C for other dirs](feedback_git_dash_C.md) - git -C /path instead of cd /path && git

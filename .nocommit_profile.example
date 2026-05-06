@@ -1,0 +1,95 @@
+#-*-shell-script-*-
+#
+# ~/.claude/.nocommit_profile.example
+#
+# Template for the private environment variables required by ~/.claude scripts,
+# commands, and skills. This file is safe to commit - it contains no real values.
+#
+# SETUP:
+#   cp ~/.claude/.nocommit_profile.example ~/.nocommit_profile
+#   # Edit ~/.nocommit_profile and fill in your real values
+#   # Add `source ~/.nocommit_profile` to your ~/.zshrc or ~/.bashrc
+#
+# ~/.nocommit_profile itself is gitignored so your credentials stay local.
+#
+# POLICY: Never hardcode org-specific values in ~/.claude files. Instead:
+#   1. Define the value as an env var here with a clear name
+#   2. Reference it as $VAR_NAME in scripts (runtime expansion) or as a
+#      verbal reference in markdown files (the model reads the name and uses
+#      it in commands it constructs)
+#   3. Add the var to this example file with a placeholder so others know
+#      which vars are required
+
+# ---------------------------------------------------------------------------
+# JIRA / Confluence (jira-*.sh, confluence-*.sh scripts)
+# ---------------------------------------------------------------------------
+
+# Your Atlassian account email address
+export JIRA_USERNAME=your-email@example.com
+
+# JIRA API token - generate at https://id.atlassian.com/manage-profile/security/api-tokens
+export JIRA_API_TOKEN=YOUR_JIRA_API_TOKEN
+
+# Base URL for your Atlassian instance (e.g. https://your-org.atlassian.net)
+export JIRA_BASE_URL=https://your-org.atlassian.net
+
+# Your personal JIRA account ID (used by jira-ready.sh to assign tickets to yourself)
+# Find it at: $JIRA_BASE_URL/rest/api/3/myself | jq .accountId
+export JIRA_ACCOUNT_ID=YOUR_JIRA_ACCOUNT_ID
+
+# Transition ID for the "In Review" state in your JIRA project
+# Find it: curl -u "$JIRA_USERNAME:$JIRA_API_TOKEN" "$JIRA_BASE_URL/rest/api/3/issue/<KEY>/transitions" | jq '.transitions[] | {id, name}'
+export JIRA_IN_REVIEW_TRANSITION_ID=YOUR_TRANSITION_ID
+
+# Custom field IDs - find via: curl -u "$JIRA_USERNAME:$JIRA_API_TOKEN" "$JIRA_BASE_URL/rest/api/3/field" | jq '.[] | {id, name}'
+export JIRA_FIELD_ACCEPTANCE_CRITERIA=customfield_XXXXX
+export JIRA_FIELD_PODS_ENGAGED=customfield_XXXXX
+
+# Option ID for a specific "Pods Engaged" field value (if applicable to your org)
+export JIRA_PODS_ENGAGED_SERVICE_ENABLEMENT_ID=XXXXX
+
+# Confluence folder ID for investigation articles (visible in the folder URL)
+export CONFLUENCE_INVESTIGATIONS_FOLDER_ID=YOUR_FOLDER_ID
+
+# ---------------------------------------------------------------------------
+# Linear (linear-*.sh scripts)
+# ---------------------------------------------------------------------------
+
+# Linear API key - generate at https://linear.app/settings/api
+export LINEAR_API_KEY=lin_api_YOUR_KEY_HERE
+
+# ---------------------------------------------------------------------------
+# GitHub (github-*.sh scripts, gh CLI)
+# ---------------------------------------------------------------------------
+
+# GitHub personal access token with repo scope
+export GITHUB_ACCESS_TOKEN=ghp_YOUR_TOKEN_HERE
+export GITHUB_TOKEN="$GITHUB_ACCESS_TOKEN"
+
+# ---------------------------------------------------------------------------
+# Infisical (referenced in CLAUDE.md for secrets management)
+# ---------------------------------------------------------------------------
+
+# Project ID for your environment in Infisical (visible in project settings URL)
+export INFISICAL_OKTETO_PROJECT_ID=YOUR_INFISICAL_PROJECT_ID
+
+# ---------------------------------------------------------------------------
+# Cultural values (cultural-values.md, add-cultural-values-to-ticket.md)
+# ---------------------------------------------------------------------------
+
+# Your org's cultural values as a multi-line string.
+# The model reads these when asked to add cultural alignment to tickets.
+export CULTURAL_VALUES="1. Value One - Brief description.
+2. Value Two - Brief description.
+3. Value Three - Brief description.
+4. Value Four - Brief description.
+5. Value Five - Brief description."
+
+# ---------------------------------------------------------------------------
+# Private gem access (Ruby projects - set if your org uses private gems)
+# ---------------------------------------------------------------------------
+
+export BUNDLE_RUBYGEMS__PKG__GITHUB__COM="_:$GITHUB_ACCESS_TOKEN"
+# export BUNDLE_GEMS__CONTRIBSYS__COM=user:password
+# export BUNDLE_ENTERPRISE__CONTRIBSYS__COM=user:password
+# export GEM_SSH_PRIVATE_KEY=base64-encoded-private-key
