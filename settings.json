@@ -1,0 +1,63 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C * add)",
+      "Bash(git -C * commit)",
+      "Bash(git -C * diff)",
+      "Bash(git -C * log)",
+      "Bash(git -C * pull)",
+      "Bash(git -C * push)",
+      "Bash(git -C * status)",
+      "Bash(~/.claude/scripts/confluence-attach.sh:*)",
+      "Bash(~/.claude/scripts/confluence-create-page.sh:*)",
+      "Bash(~/.claude/scripts/confluence-get.sh:*)",
+      "Bash(~/.claude/scripts/confluence-inspect-page.sh:*)",
+      "Bash(~/.claude/scripts/confluence-list-children.sh:*)",
+      "Bash(~/.claude/scripts/confluence-md-to-storage.sh:*)",
+      "Bash(~/.claude/scripts/confluence-publish-md.sh:*)",
+      "Bash(~/.claude/scripts/confluence-update-page.sh:*)",
+      "Bash(~/.claude/scripts/github-job-logs.sh:*)",
+      "Bash(~/.claude/scripts/github-pr-checks.sh:*)",
+      "Bash(~/.claude/scripts/github-pr-description.sh:*)",
+      "Bash(~/.claude/scripts/github-pr-for-branch.sh:*)",
+      "Bash(~/.claude/scripts/jira-attach.sh:*)",
+      "Bash(~/.claude/scripts/jira-create.sh:*)",
+      "Bash(~/.claude/scripts/jira-delete-attachment.sh:*)",
+      "Bash(~/.claude/scripts/jira-link.sh:*)",
+      "Bash(~/.claude/scripts/jira-list-attachments.sh:*)",
+      "Bash(~/.claude/scripts/jira-ready.sh:*)",
+      "Bash(~/.claude/scripts/jira-update.sh:*)",
+      "Bash(~/.claude/scripts/linear-attach.sh:*)",
+      "Bash(~/.claude/scripts/linear-get.sh:*)",
+      "Bash(~/.claude/scripts/linear-create.sh:*)",
+      "Bash(~/.claude/scripts/linear-delete-attachment.sh:*)",
+      "Bash(~/.claude/scripts/linear-link.sh:*)",
+      "Bash(~/.claude/scripts/linear-list-attachments.sh:*)",
+      "Bash(~/.claude/scripts/linear-ready.sh:*)",
+      "Bash(~/.claude/scripts/linear-update.sh:*)",
+      "Bash(~/.claude/scripts/poetry-run.sh:*)"
+    ],
+    "additionalDirectories": [
+      "~/projects"
+    ]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/claude-notify-approval.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "alwaysThinkingEnabled": true,
+  "theme": "auto"
+}

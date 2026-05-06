@@ -5,7 +5,6 @@ history.jsonl
 paste-cache/
 plugins/
 projects/
-settings.json
 shell-snapshots/
 stats-cache.json
 statsig/
