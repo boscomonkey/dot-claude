@@ -18,3 +18,4 @@ backups/
 sessions/
 .update.lock
 .nocommit_profile
+.last-cleanup

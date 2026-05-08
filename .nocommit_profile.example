@@ -58,6 +58,13 @@ export CONFLUENCE_INVESTIGATIONS_FOLDER_ID=YOUR_FOLDER_ID
 # Linear API key - generate at https://linear.app/settings/api
 export LINEAR_API_KEY=lin_api_YOUR_KEY_HERE
 
+# Linear team metadata for the team you primarily work with.
+# - Key is the short prefix that appears in issue identifiers (e.g. "ENG" for "ENG-123").
+# - ID is the team UUID; look up via:
+#     ~/.claude/scripts/linear-graphql.sh '{ teams { nodes { id name key } } }' | jq
+export LINEAR_TEAM_KEY=YOUR_TEAM_KEY
+export LINEAR_TEAM_ID=YOUR_TEAM_UUID
+
 # ---------------------------------------------------------------------------
 # GitHub (github-*.sh scripts, gh CLI)
 # ---------------------------------------------------------------------------

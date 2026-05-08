@@ -33,6 +33,7 @@
       "Bash(~/.claude/scripts/linear-create.sh:*)",
       "Bash(~/.claude/scripts/linear-delete-attachment.sh:*)",
       "Bash(~/.claude/scripts/linear-graphql.sh:*)",
+      "Bash(~/.claude/scripts/linear-issue-create.sh:*)",
       "Bash(~/.claude/scripts/linear-link.sh:*)",
       "Bash(~/.claude/scripts/linear-list-attachments.sh:*)",
       "Bash(~/.claude/scripts/linear-ready.sh:*)",
