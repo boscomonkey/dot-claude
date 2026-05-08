@@ -28,6 +28,16 @@ from_id="$1"
 relation_type="$2"
 to_id="$3"
 
+# Linear's IssueRelationType enum has `blocks` but no `blocked_by`. Convert
+# `<A> blocked_by <B>` to the equivalent `<B> blocks <A>` so callers can use
+# whichever direction reads naturally for their use case.
+if [[ "$relation_type" == "blocked_by" ]]; then
+    tmp="$from_id"
+    from_id="$to_id"
+    to_id="$tmp"
+    relation_type="blocks"
+fi
+
 : "${LINEAR_API_KEY:?LINEAR_API_KEY must be set}"
 
 gql() {
@@ -38,7 +48,7 @@ gql() {
         https://api.linear.app/graphql
 }
 
-# Resolve both identifiers to UUIDs (relationCreate requires UUIDs)
+# Resolve both identifiers to UUIDs (issueRelationCreate requires UUIDs)
 resolve_payload=$(jq -n \
     --arg from "$from_id" \
     --arg to "$to_id" \
@@ -71,7 +81,7 @@ payload=$(jq -n \
     --arg relatedIssueId "$to_uuid" \
     --arg type "$relation_type" \
     '{
-        "query": "mutation RelationCreate($input: IssueRelationCreateInput!) { relationCreate(input: $input) { success issueRelation { id type } } }",
+        "query": "mutation RelationCreate($input: IssueRelationCreateInput!) { issueRelationCreate(input: $input) { success issueRelation { id type } } }",
         "variables": {"input": {"issueId": $issueId, "relatedIssueId": $relatedIssueId, "type": $type}}
     }')
 
@@ -82,7 +92,7 @@ if echo "$response" | jq -e '.errors' > /dev/null 2>&1; then
     exit 1
 fi
 
-success=$(echo "$response" | jq -r '.data.relationCreate.success')
+success=$(echo "$response" | jq -r '.data.issueRelationCreate.success')
 if [[ "$success" != "true" ]]; then
     echo "Failed to create relation" >&2
     echo "$response" >&2
