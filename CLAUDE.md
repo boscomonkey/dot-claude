@@ -21,6 +21,7 @@
   - `~/.claude/scripts/jira-attach.sh <TICKET_KEY> <FILE_PATH>` - upload a file as a JIRA attachment
   - `~/.claude/scripts/jira-create.sh <JSON_FILE>` - POST to `/rest/api/3/issue` to create a new JIRA issue. Write the `{"fields": {...}}` payload to a `.json` file under `tmp/` first, then invoke this. Prints `{id, key, self}` JSON on success.
   - `~/.claude/scripts/jira-delete-attachment.sh <ATTACHMENT_ID>` - delete a JIRA attachment by ID (ID is returned by jira-attach.sh)
+  - `~/.claude/scripts/jira-get-attachment.sh <ATTACHMENT_ID> [--out <FILE>]` - download a JIRA attachment by ID (follows the 302 redirect to the presigned object-storage URL). Prints to stdout or writes to FILE when `--out` is given.
   - `~/.claude/scripts/jira-link.sh <FROM_KEY> <LINK_TYPE> <TO_KEY>` - create a JIRA issue link between two tickets. Common link type names (case-sensitive): Relates, Blocks, Duplicate, Dependency, Problem/Incident. FROM_KEY is the inward issue. Exits 0 on success (HTTP 201).
   - `~/.claude/scripts/jira-list-attachments.sh <TICKET_KEY>` - list all attachments on a JIRA issue; prints `<id>: <filename> (<size>b)` per line
   - `~/.claude/scripts/jira-ready.sh <TICKET_KEY> [ACCOUNT_ID] [TRANSITION_ID]` - one-shot "ready for review": assign + transition + verify. Defaults read from `$JIRA_ACCOUNT_ID` and `$JIRA_IN_REVIEW_TRANSITION_ID`. Prints `{ticket, status, assignee}` JSON on success.
@@ -29,6 +30,7 @@
   - `~/.claude/scripts/linear-get.sh <ISSUE_ID>` - fetch a Linear issue and print its title, state, assignee, labels, parent, relations, and full markdown description. ISSUE_ID can be an identifier (e.g. `ENG-123`) or UUID.
   - `~/.claude/scripts/linear-create.sh <JSON_FILE>` - create a new Linear issue. Write the `IssueCreateInput` fields (`teamId`, `title`, `description`, etc.) to a `.json` file under `tmp/` first, then invoke this. Prints `{id, identifier, url}` on success.
   - `~/.claude/scripts/linear-delete-attachment.sh <ATTACHMENT_ID>` - delete a Linear attachment by ID (ID returned by linear-attach.sh or linear-list-attachments.sh).
+  - `~/.claude/scripts/linear-graphql.sh <GRAPHQL_QUERY> [<VARIABLES_JSON>]` - run an arbitrary Linear GraphQL query/mutation. Use for metadata lookups (project / team / state UUIDs from a slug or name) before composing a `linear-create.sh` payload. Returns raw JSON; pipe through `jq` for formatting.
   - `~/.claude/scripts/linear-link.sh <FROM_ID> <RELATION_TYPE> <TO_ID>` - create a relation between two Linear issues. Types: `related`, `blocks`, `blocked_by`, `duplicate`. ISSUE_IDs can be identifiers (e.g. `ENG-123`) or UUIDs. Exits 0 on success.
   - `~/.claude/scripts/linear-list-attachments.sh <ISSUE_ID>` - list all attachments on a Linear issue; prints `<id>: <title>  <url>` per line.
   - `~/.claude/scripts/linear-ready.sh <ISSUE_ID> [STATE_ID]` - one-shot "ready for review": assign to self + transition to "In Review" (looked up by name if STATE_ID omitted; lists available states if not found). Prints `{ticket, status, assignee}` on success.
