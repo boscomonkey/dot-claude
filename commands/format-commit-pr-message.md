@@ -5,7 +5,7 @@
 ```
 TICKET-ID Brief description of changes
 
-${JIRA_BASE_URL}/browse/TICKET-ID
+<ticket-url>
 
 ### Purpose
 
@@ -38,35 +38,29 @@ Co-Authored-By: Claude <noreply@anthropic.com>
 - **Example**: `PROJ-123 Update base image to use Debian bookworm instead of bullseye`
 
 ### Description
-- **First line**: Direct link to Jira ticket
+- **First line**: Direct link to the ticket (Jira, Linear, or other tracker)
 - **Content**: Everything after the ticket URL from the commit message
-- **Wrapping**: Body text wrapped to 80 columns
+- **Wrapping**: No wrapping - GitHub wraps merge message lines automatically
 - **Structure**: Same three sections (Purpose, Validating, Background context)
 
 ### Example PR Description
 
 ```
-${JIRA_BASE_URL}/browse/PROJ-123
+https://linear.app/example/issue/PROJ-123
 
 ### Purpose
 
-Switch the app's Docker base image from deprecated Debian bullseye to
-bookworm to ensure compatibility with current Ruby 3.4.6 image
-availability and maintain security support.
+Switch the app's Docker base image from deprecated Debian bullseye to bookworm to ensure compatibility with current Ruby 3.4.6 image availability and maintain security support.
 
 ### Validating
 
-* Verify Docker image builds successfully with
-  `ruby:3.4.6-slim-bookworm` base image
+* Verify Docker image builds successfully with `ruby:3.4.6-slim-bookworm` base image
 * Test that all package dependencies install correctly on bookworm
 * Confirm development and production containers function as expected
 
 ### Background context
 
-While waiting for `ruby:3.4.6-slim-bullseye` to become available, we
-discovered that Debian bullseye has been deprecated in favor of
-bookworm. This update ensures the app uses a supported base image
-with active security updates and package availability.
+While waiting for `ruby:3.4.6-slim-bullseye` to become available, we discovered that Debian bullseye has been deprecated in favor of bookworm. This update ensures the app uses a supported base image with active security updates and package availability.
 
 🤖 Generated with [Claude Code](https://claude.ai/code)
 ```
@@ -74,7 +68,7 @@ with active security updates and package availability.
 ## Key Guidelines
 
 1. **Ticket Reference**: Always include ticket ID and URL
-2. **80-Column Wrapping**: Wrap all body text except PR titles
+2. **80-Column Wrapping**: Wrap commit message body text to 80 columns; PR description body text does not need wrapping (GitHub wraps automatically)
 3. **Clear Structure**: Use the three-section format consistently
 4. **Actionable Validation**: Provide specific testing steps
 5. **Context**: Explain the "why" behind changes

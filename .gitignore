@@ -7,6 +7,7 @@ plugins/
 projects/
 shell-snapshots/
 stats-cache.json
+mcp-needs-auth-cache.json
 statsig/
 tmp/
 todos/

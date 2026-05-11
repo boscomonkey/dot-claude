@@ -300,7 +300,7 @@ Confluence automatically handles spacing between block elements. When converting
 
 ## Important Notes
 
-- **CRITICAL**: Do NOT wrap text in Discovery Articles at any line length (unlike commit messages/PRs which are wrapped at 72 columns)
+- **CRITICAL**: Do NOT wrap text in Discovery Articles at any line length (unlike commit message bodies which are wrapped to 80 columns)
   - This applies to ALL text: paragraphs, bullet points, numbered lists, descriptions
   - Let text flow naturally on single lines regardless of length
   - Discovery articles are meant to be read in editors and Confluence, not constrained to terminal width

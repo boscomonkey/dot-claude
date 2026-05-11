@@ -4,7 +4,6 @@
 
 **ONLY wrap to 80 columns for:**
 - Git commit messages (body text only, not the subject line)
-- GitHub Pull Request descriptions (body text only, not the title)
 
 ## When NOT to Wrap Text
 
@@ -21,13 +20,14 @@
 
 ## Why This Rule Exists
 
-Git commit messages and PR descriptions are viewed in terminal windows and standard Git tools, which benefit from 80-column wrapping for readability. All other content is viewed in tools that handle text wrapping automatically (web browsers, IDEs, Slack, JIRA), so manual wrapping is unnecessary and can actually make editing harder.
+Git commit messages are viewed in terminal windows and standard Git tools, which benefit from 80-column wrapping for readability. GitHub PR descriptions do not need manual wrapping - GitHub wraps merge message lines automatically. All other content is viewed in tools that handle text wrapping automatically (web browsers, IDEs, Slack, JIRA), so manual wrapping is unnecessary and can actually make editing harder.
 
 ## Line Length Limits
 
 - **Commit message subject**: No wrapping, but keep under ~50 characters when possible
 - **PR title**: No wrapping
-- **Commit/PR body text**: Wrap to 80 columns
+- **Commit body text**: Wrap to 80 columns
+- **PR description body text**: No wrapping - GitHub wraps automatically
 - **Everything else**: No wrapping, let the viewing tool handle it
 
 ## Examples
