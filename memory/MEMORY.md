@@ -1,3 +1,4 @@
 - [Use git worktrees for parallel branches](feedback_worktree_parallel.md) - Agent with isolation:"worktree" instead of sequential checkout
 - [Worktree folder naming](feedback_worktree_naming.md) - Sibling folders named {service}-{ticket}, e.g. my-service-PROJ-1234
 - [Use git -C for other dirs](feedback_git_dash_C.md) - git -C /path instead of cd /path && git
+- [Linear team-move drops project assignment](reference_linear_team_move_drops_project.md) - moving an issue between teams silently clears `projectId` if the new team isn't a member of that project
