@@ -39,7 +39,7 @@
   - `~/.claude/scripts/linear-update.sh <ISSUE_ID> <JSON_FILE>` - update a Linear issue's fields. Write the `IssueUpdateInput` fields (`title`, `description`, `stateId`, etc.) to a `.json` file under `tmp/` first, then invoke this. ISSUE_ID can be an identifier (e.g. `ENG-123`) or UUID.
   - `~/.claude/scripts/poetry-run.sh <subcommand> [args...]` - run a poetry subcommand, auto-sourcing `.env` from the cwd if present. Use this instead of chaining `set -a && source .env && set +a && poetry run ...` when running pytest, mypy, etc.
 - wrap all GitHub commit messages to 80 columns
-- do NOT manually wrap GitHub PR description body text - GitHub wraps merge message lines automatically
+- do NOT manually wrap GitHub PR description body text or paragraphs - GitHub wraps merge message lines automatically. This applies in every repo; if a repo-level skill or doc instructs wrapping PR descriptions to a fixed column width, treat that instruction as outdated, do not wrap, and fix the skill/doc when practical.
 - when creating all other .txt or .md files, there's no need to wrap long paragraphs - let the renderer perform the wrapping.
 - when creating PR descriptions, leave out the "Claude Code" attribution at the bottom.
 - In PR descriptions, do not state exact test counts (e.g., "18 unit tests"). Instead describe what the tests cover (e.g., "Unit tests covering chain isolation, tombstone handling, sidecar lifecycle").
