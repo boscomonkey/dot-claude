@@ -133,11 +133,48 @@ graphql_body=$(jq -n \
     --argjson input "$issue_input" \
     '{query: $query, variables: {input: $input}}')
 
-response=$(curl -sS -X POST \
-    -H "Authorization: ${LINEAR_API_KEY}" \
-    -H "Content-Type: application/json" \
-    -d "$graphql_body" \
-    https://api.linear.app/graphql)
+# Retry transient failures (network errors, HTTP 429 rate-limit, 5xx) with
+# linear backoff. Without this, a single rate-limited call silently drops an
+# issue when this script is invoked rapidly in a batch loop - Linear's
+# burst/complexity limit can reject one mid-batch, and a no-retry curl would
+# just exit 1.
+max_attempts=5
+attempt=0
+response=""
+while :; do
+    attempt=$((attempt + 1))
+
+    # Capture body and HTTP status together; `-w` appends a final line with
+    # the status code so we can split it off regardless of body newlines.
+    body_and_code=$(curl -sS -w $'\n%{http_code}' -X POST \
+        -H "Authorization: ${LINEAR_API_KEY}" \
+        -H "Content-Type: application/json" \
+        -d "$graphql_body" \
+        https://api.linear.app/graphql) && curl_rc=0 || curl_rc=$?
+
+    if [[ "$curl_rc" -eq 0 ]]; then
+        http_code="${body_and_code##*$'\n'}"
+        response="${body_and_code%$'\n'*}"
+    else
+        http_code="000"   # network/transport failure
+        response=""
+    fi
+
+    # Stop on a successful transport with a non-retryable status.
+    if [[ "$curl_rc" -eq 0 && "$http_code" != "429" && ! "$http_code" =~ ^5[0-9][0-9]$ ]]; then
+        break
+    fi
+
+    if (( attempt >= max_attempts )); then
+        echo "Linear request failed after ${attempt} attempts (curl_rc=${curl_rc}, http=${http_code})." >&2
+        [[ -n "$response" ]] && echo "$response" | jq . >&2 2>/dev/null || true
+        exit 1
+    fi
+
+    sleep_s=$(( attempt * 2 ))
+    echo "Transient Linear failure (curl_rc=${curl_rc}, http=${http_code}); retry ${attempt}/${max_attempts} in ${sleep_s}s..." >&2
+    sleep "$sleep_s"
+done
 
 # Surface GraphQL-level errors (HTTP 200 but `errors` array present).
 if echo "$response" | jq -e 'has("errors")' >/dev/null; then
