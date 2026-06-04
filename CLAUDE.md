@@ -15,6 +15,7 @@
   - `~/.claude/scripts/confluence-md-to-storage.sh <INPUT_MD> <OUTPUT_XHTML>` - convert a Markdown file to Confluence storage format (XHTML + ac:* macros). Low-level step; use `confluence-publish-md.sh` for the full pipeline.
   - `~/.claude/scripts/confluence-publish-md.sh <PARENT_ID> <TITLE> <INPUT_MD>` - one-shot: convert a Markdown file to Confluence storage format and create a new page under the given parent folder or page ID. Composes `confluence-md-to-storage.sh` + `confluence-create-page.sh`.
   - `~/.claude/scripts/confluence-update-page.sh <PAGE_ID> <TITLE> <STORAGE_XHTML_FILE>` - update an existing Confluence page with new content. Auto-fetches the current version and increments it. Prints `{id, title, status, version, webui}` on success.
+  - `~/.claude/scripts/gh-draft-pr.sh [--repo <OWNER/REPO>] --base <BASE> --head <HEAD> --title <TITLE> --body-file <PATH>` - create a DRAFT GitHub PR and assign it to the authenticated user (@me). `--repo` defaults to the cwd's repo. Prints the PR URL then assigns it. Uses `GITHUB_TOKEN`.
   - `~/.claude/scripts/github-job-logs.sh <OWNER/REPO> <JOB_ID> [--out <FILE>]` - fetch GitHub Actions job logs by numeric job ID (from the Actions URL). Writes to stdout or to FILE if `--out` is given. Uses `GITHUB_TOKEN`.
   - `~/.claude/scripts/github-pr-checks.sh <OWNER/REPO> <PR_NUMBER>` - list all CI check runs for a PR with pass/fail status. Uses `GITHUB_ACCESS_TOKEN`.
   - `~/.claude/scripts/github-pr-description.sh <OWNER/REPO> <PR_NUMBER>` - fetch a PR's title and body (description). Uses `GITHUB_ACCESS_TOKEN`.

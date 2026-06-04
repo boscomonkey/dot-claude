@@ -10,6 +10,7 @@
       "Bash(git -C * status)",
       "Bash(~/.claude/scripts/bundle-exec.sh:*)",
       "Bash(~/.claude/scripts/confluence-attach.sh:*)",
+      "Bash(~/.claude/scripts/gh-draft-pr.sh:*)",
       "Bash(~/.claude/scripts/confluence-create-page.sh:*)",
       "Bash(~/.claude/scripts/confluence-get.sh:*)",
       "Bash(~/.claude/scripts/confluence-inspect-page.sh:*)",
@@ -53,6 +54,52 @@
           {
             "type": "command",
             "command": "bash ~/.claude/hooks/claude-notify-approval.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/bin/aicodemetricsd hook claude --hook-input stdin",
+            "timeout": 2
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/bin/aicodemetricsd hook claude --hook-input stdin",
+            "timeout": 2
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/bin/aicodemetricsd hook claude --hook-input stdin",
+            "timeout": 2
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/bin/aicodemetricsd hook claude --hook-input stdin",
+            "timeout": 2
           }
         ]
       }
