@@ -20,6 +20,7 @@
   - `~/.claude/scripts/github-pr-checks.sh <OWNER/REPO> <PR_NUMBER>` - list all CI check runs for a PR with pass/fail status. Uses `GITHUB_ACCESS_TOKEN`.
   - `~/.claude/scripts/github-pr-description.sh <OWNER/REPO> <PR_NUMBER>` - fetch a PR's title and body (description). Uses `GITHUB_ACCESS_TOKEN`.
   - `~/.claude/scripts/github-pr-for-branch.sh <OWNER/REPO> <BRANCH>` - look up open PR(s) for a branch; prints number, title, URL, draft status, and base/head refs. Uses `GITHUB_ACCESS_TOKEN`.
+  - `~/.claude/scripts/github-pr-view.sh <OWNER/REPO> <PR_NUMBER> [FIELDS]` - fetch full PR metadata via `gh pr view --json` with a selectable comma-separated `FIELDS` list (defaults to a broad set including title, body, files, base/head refs, author, labels, reviewDecision). Use this instead of `github-pr-description.sh` when you need changed files or branch refs (e.g. to model new code on an existing PR). Prints raw JSON. Uses `GITHUB_TOKEN`.
   - `~/.claude/scripts/jira-attach.sh <TICKET_KEY> <FILE_PATH>` - upload a file as a JIRA attachment
   - `~/.claude/scripts/jira-create.sh <JSON_FILE>` - POST to `/rest/api/3/issue` to create a new JIRA issue. Write the `{"fields": {...}}` payload to a `.json` file under `tmp/` first, then invoke this. Prints `{id, key, self}` JSON on success.
   - `~/.claude/scripts/jira-delete-attachment.sh <ATTACHMENT_ID>` - delete a JIRA attachment by ID (ID is returned by jira-attach.sh)

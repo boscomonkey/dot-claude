@@ -22,6 +22,7 @@
       "Bash(~/.claude/scripts/github-pr-checks.sh:*)",
       "Bash(~/.claude/scripts/github-pr-description.sh:*)",
       "Bash(~/.claude/scripts/github-pr-for-branch.sh:*)",
+      "Bash(~/.claude/scripts/github-pr-view.sh:*)",
       "Bash(~/.claude/scripts/jira-attach.sh:*)",
       "Bash(~/.claude/scripts/jira-create.sh:*)",
       "Bash(~/.claude/scripts/jira-delete-attachment.sh:*)",
