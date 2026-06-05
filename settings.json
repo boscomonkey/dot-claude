@@ -48,6 +48,7 @@
       "Bash(~/.claude/scripts/linear-update.sh:*)",
       "Bash(~/.claude/scripts/poetry-run.sh:*)",
       "Bash(~/.claude/scripts/sentry-api.sh:*)",
+      "Bash(~/.claude/scripts/sr-avro-linear-rows.sh:*)",
       "Bash(~/.claude/scripts/sr-avro-schema.sh:*)"
     ],
     "additionalDirectories": [
