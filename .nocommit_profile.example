@@ -100,3 +100,16 @@ export BUNDLE_RUBYGEMS__PKG__GITHUB__COM="_:$GITHUB_ACCESS_TOKEN"
 # export BUNDLE_GEMS__CONTRIBSYS__COM=user:password
 # export BUNDLE_ENTERPRISE__CONTRIBSYS__COM=user:password
 # export GEM_SSH_PRIVATE_KEY=base64-encoded-private-key
+
+# ---------------------------------------------------------------------------
+# Schema Registry (set if you run the Avro schema-registry infra stack locally)
+# ---------------------------------------------------------------------------
+# export SCHEMA_REGISTRY_URL="http://localhost:8081"
+
+# ---------------------------------------------------------------------------
+# Sentry API (set to let the sentry-api.sh wrapper read issues/events)
+# ---------------------------------------------------------------------------
+# export SENTRY_AUTH_TOKEN="sntryu_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"  # read-only token
+# export SENTRY_ORG="your-org-slug"
+# export SENTRY_ORG_ID="000000"
+# export SENTRY_HOST="https://your-org.sentry.io"

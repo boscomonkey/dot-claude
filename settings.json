@@ -11,6 +11,7 @@
       "Bash(~/.claude/scripts/bundle-exec.sh:*)",
       "Bash(~/.claude/scripts/confluence-attach.sh:*)",
       "Bash(~/.claude/scripts/gh-draft-pr.sh:*)",
+      "Bash(~/.claude/scripts/gh-pr-ready-review.sh:*)",
       "Bash(~/.claude/scripts/confluence-create-page.sh:*)",
       "Bash(~/.claude/scripts/confluence-get.sh:*)",
       "Bash(~/.claude/scripts/confluence-inspect-page.sh:*)",
@@ -18,6 +19,7 @@
       "Bash(~/.claude/scripts/confluence-md-to-storage.sh:*)",
       "Bash(~/.claude/scripts/confluence-publish-md.sh:*)",
       "Bash(~/.claude/scripts/confluence-update-page.sh:*)",
+      "Bash(~/.claude/scripts/git-worktree-add.sh:*)",
       "Bash(~/.claude/scripts/github-job-logs.sh:*)",
       "Bash(~/.claude/scripts/github-pr-checks.sh:*)",
       "Bash(~/.claude/scripts/github-pr-description.sh:*)",
@@ -41,7 +43,9 @@
       "Bash(~/.claude/scripts/linear-list-attachments.sh:*)",
       "Bash(~/.claude/scripts/linear-ready.sh:*)",
       "Bash(~/.claude/scripts/linear-update.sh:*)",
-      "Bash(~/.claude/scripts/poetry-run.sh:*)"
+      "Bash(~/.claude/scripts/poetry-run.sh:*)",
+      "Bash(~/.claude/scripts/sentry-api.sh:*)",
+      "Bash(~/.claude/scripts/sr-avro-schema.sh:*)"
     ],
     "additionalDirectories": [
       "~/projects"
