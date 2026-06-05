@@ -14,6 +14,7 @@
       "Bash(~/.claude/scripts/gh-draft-pr.sh:*)",
       "Bash(~/.claude/scripts/gh-pr-ready-review.sh:*)",
       "Bash(~/.claude/scripts/gh-pr-automerge.sh:*)",
+      "Bash(~/.claude/scripts/gh-pr-update-branch.sh:*)",
       "Bash(~/.claude/scripts/confluence-create-page.sh:*)",
       "Bash(~/.claude/scripts/confluence-get.sh:*)",
       "Bash(~/.claude/scripts/confluence-inspect-page.sh:*)",
