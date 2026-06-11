@@ -74,6 +74,7 @@ def repl(m):
     img = out_dir / f"mermaid-{n}.{fmt}"
     subprocess.run(["mmdc", "-i", str(mmd), "-o", str(img), "-b", "white"],
                    check=True, stdout=sys.stderr, stderr=sys.stderr)
+    generated.append(img)
     if fmt == "svg":
         # Embed the Mermaid source as CDATA metadata so the SVG is self-describing
         # and the source is recoverable from the single attachment. Not an XML
@@ -82,7 +83,11 @@ def repl(m):
         meta = f'<metadata id="mermaid-source"><![CDATA[{src}]]></metadata>'
         svg = re.sub(r'(<svg\b[^>]*>)', lambda mm: mm.group(1) + meta, svg, count=1)
         img.write_text(svg)
-    generated.append(img)
+    else:
+        # PNG renders reliably inline, but is not self-describing - also attach the
+        # .mmd source as a (non-embedded) recovery sidecar (Option 1). SVG carries
+        # its own source, so it needs no sidecar.
+        generated.append(mmd)
     return (f'<ac:image ac:align="center"><ri:attachment ri:filename="mermaid-{n}.{fmt}" />'
             f'</ac:image>')
 
