@@ -57,7 +57,9 @@ else
     fi
 
     if [[ -n "$team_key" ]]; then
-        nodes=$(echo "$label_response" | jq --arg t "$team_key" '[.data.issueLabels.nodes[] | select(.team.key == $t)]')
+        # match the named team OR workspace-level labels (team == null), which
+        # are applicable to any team's issue.
+        nodes=$(echo "$label_response" | jq --arg t "$team_key" '[.data.issueLabels.nodes[] | select(.team.key == $t or .team == null)]')
     else
         nodes=$(echo "$label_response" | jq '.data.issueLabels.nodes')
     fi
