@@ -60,6 +60,7 @@
       "Bash(~/.claude/scripts/linear-link.sh:*)",
       "Bash(~/.claude/scripts/linear-list-attachments.sh:*)",
       "Bash(~/.claude/scripts/linear-ready.sh:*)",
+      "Bash(~/.claude/scripts/linear-rename-label.sh:*)",
       "Bash(~/.claude/scripts/linear-update.sh:*)",
       "Bash(~/.claude/scripts/poetry-run.sh:*)",
       "Bash(~/.claude/scripts/sentry-api.sh:*)",
