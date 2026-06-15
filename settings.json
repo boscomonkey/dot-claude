@@ -1,6 +1,14 @@
 {
   "permissions": {
     "allow": [
+      "Bash(~/projects/basilisk/tmp/scripts/*.sh:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(grep:*)",
+      "Bash(wc:*)",
+      "Bash(cut:*)",
+      "Bash(tr:*)",
+      "Bash(chmod +x *)",
       "Bash(git -C * add)",
       "Bash(git -C * commit)",
       "Bash(git -C * diff)",
@@ -47,6 +55,7 @@
       "Bash(~/.claude/scripts/linear-create.sh:*)",
       "Bash(~/.claude/scripts/linear-delete-attachment.sh:*)",
       "Bash(~/.claude/scripts/linear-graphql.sh:*)",
+      "Bash(~/.claude/scripts/linear-add-label.sh:*)",
       "Bash(~/.claude/scripts/linear-issue-create.sh:*)",
       "Bash(~/.claude/scripts/linear-link.sh:*)",
       "Bash(~/.claude/scripts/linear-list-attachments.sh:*)",
